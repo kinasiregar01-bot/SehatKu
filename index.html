@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="SehatKu: registrasi pasien rumah sakit online. Daftar poli, pilih dokter, dan dapatkan nomor antrean dari HP.">
+<meta name="theme-color" content="#0f766e">
+<meta name="robots" content="index, follow">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:title" content="SehatKu – Registrasi Pasien">
+<meta property="og:description" content="Daftar berobat dan dapatkan nomor antrean dari HP.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A5%3C/text%3E%3C/svg%3E">
+<title>SehatKu – Registrasi Pasien</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f7f6;--card:#fff;--ink:#12302f;--mute:#5d7776;--line:#d5e4e2;--brand:#0f766e;--brand2:#0a5a54;--on:#fff;--soft:#dff1ee;--warn:#b42318;--sh:0 6px 20px rgba(15,60,56,.10);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1a19;--card:#142826;--ink:#e6f3f1;--mute:#93b0ad;--line:#244240;--brand:#2dd4bf;--brand2:#5eead4;--on:#06302c;--soft:#173836;--warn:#ff8a80;--sh:0 6px 20px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0c1a19;--card:#142826;--ink:#e6f3f1;--mute:#93b0ad;--line:#244240;--brand:#2dd4bf;--brand2:#5eead4;--on:#06302c;--soft:#173836;--warn:#ff8a80;--sh:0 6px 20px rgba(0,0,0,.35)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.wrap{max-width:520px;margin:0 auto;padding:18px 18px 110px}
+h1,h2,h3{margin:0;line-height:1.2}
+h1{font-size:26px;font-weight:800}h2{font-size:20px;font-weight:800}h3{font-size:16px;font-weight:600}
+p{margin:0}.mute{color:var(--mute);font-size:14px}
+.hero{background:var(--brand);color:var(--on);border-radius:26px;padding:24px 22px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.hero p{opacity:.9;margin-top:6px}
+.hero .big{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:var(--on);color:var(--brand);font:800 16px inherit;font-family:inherit;border:0;border-radius:16px;padding:14px 20px;cursor:pointer}
+:root[data-theme="dark"] .hero .big,:root:not([data-theme="light"]) .hero .big{color:var(--brand2)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.card{background:var(--card);border-radius:20px;padding:18px;box-shadow:var(--sh);border:1px solid var(--line)}
+.num{font-size:34px;font-weight:800;color:var(--brand)}
+.sec{margin-top:22px;display:flex;justify-content:space-between;align-items:center}
+.row{display:flex;gap:12px;align-items:center}
+.ic{width:42px;height:42px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-size:20px;flex:none}
+.item{display:flex;gap:12px;align-items:center;margin-top:10px;cursor:pointer}
+.item .grow{flex:1;min-width:0}.item h3,.item .mute{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{background:var(--soft);color:var(--brand);font-weight:800;border-radius:10px;padding:4px 10px;font-size:14px}
+.steps{display:flex;gap:6px;margin:6px 0 16px}
+.steps i{flex:1;height:6px;border-radius:6px;background:var(--line)}.steps i.on{background:var(--brand)}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+textarea{min-height:84px;resize:vertical}
+.err{color:var(--warn);font-size:13px;margin-top:5px;min-height:0}
+.btns{display:flex;gap:10px;margin-top:22px}
+.btn{flex:1;font:800 16px inherit;font-family:inherit;border:0;border-radius:16px;padding:15px;cursor:pointer;background:var(--brand);color:var(--on)}
+.btn.sec2{background:var(--soft);color:var(--brand)}
+.btn.del{background:transparent;color:var(--warn);border:1.5px solid var(--line)}
+.sum div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.sum div:last-child{border:0}.sum b{text-align:right}
+.ticket{background:var(--card);border-radius:24px;box-shadow:var(--sh);border:1px solid var(--line);overflow:hidden}
+.ticket .top{background:var(--brand);color:var(--on);padding:22px;text-align:center}
+.ticket .q{font-size:64px;font-weight:800;letter-spacing:2px;line-height:1.1}
+.ticket .cut{height:20px;position:relative;background:var(--card)}
+.ticket .cut::before{content:"";position:absolute;left:14px;right:14px;top:50%;border-top:2px dashed var(--line)}
+.ticket .cut::after{content:"";position:absolute;left:-10px;right:-10px;top:0;height:20px;background:radial-gradient(circle 10px at 0 50%,var(--bg) 98%,transparent) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 50%,var(--bg) 98%,transparent) right/51% 100% no-repeat}
+.ticket .body{padding:6px 22px 22px}
+.nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));z-index:20}
+.nav button{flex:1;max-width:160px;background:none;border:0;color:var(--mute);font:600 12px inherit;font-family:inherit;padding:6px;border-radius:14px;cursor:pointer}
+.nav button span{display:block;font-size:22px}
+.nav button.on{color:var(--brand);background:var(--soft)}
+.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:14px;font-weight:600;font-size:14px;z-index:30;max-width:90%;text-align:center}
+.empty{text-align:center;padding:34px 10px;color:var(--mute)}
+.empty span{font-size:42px;display:block}
+.filters{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;margin:14px 0 4px}
+.top2{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.theme{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;cursor:pointer;font-size:16px}
+@media (prefers-reduced-motion:no-preference){.view{animation:in .25s ease}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top2"><div class="row"><div class="ic">🏥</div><div><h3>SehatKu</h3><div class="mute">RS Sehat Sentosa</div></div></div><button class="theme" id="th" aria-label="Ganti tema">🌓</button></div>
+  <div id="app" class="view"></div>
+</div>
+<nav class="nav" id="nav">
+  <button data-v="home"><span>🏠</span>Beranda</button>
+  <button data-v="form"><span>📝</span>Daftar</button>
+  <button data-v="list"><span>👥</span>Pasien</button>
+</nav>
+<script>
+var POLI={Umum:{k:'A',d:['dr. Andi Pratama','dr. Sari Wulandari']},Gigi:{k:'B',d:['drg. Rina Kusuma','drg. Budi Santoso']},Anak:{k:'C',d:['dr. Maya Putri, Sp.A','dr. Hendra Wijaya, Sp.A']},Kandungan:{k:'D',d:['dr. Lestari, Sp.OG','dr. Dewi Anggraini, Sp.OG']},Mata:{k:'E',d:['dr. Fajar Nugroho, Sp.M']},Jantung:{k:'F',d:['dr. Rahmat Hidayat, Sp.JP']}};
+var ICON={Umum:'🩺',Gigi:'🦷',Anak:'🧸',Kandungan:'🤰',Mata:'👁️',Jantung:'❤️'};
+var db=[],view='home',step=1,f={},cur=null,q='',fp='';
+var API='PASTE_URL_APPS_SCRIPT_DI_SINI',updated='',ADMIN=false,PIN='';
+if(API.indexOf('http')!==0)API='';
+try{db=JSON.parse(localStorage.getItem('sehatku')||'[]')}catch(e){db=[]}
+if(API)db=[];
+function save(){try{localStorage.setItem('sehatku',JSON.stringify(db))}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function tgl(s){if(!s)return'-';var p=s.split('-');var b=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];return +p[2]+' '+b[+p[1]-1]+' '+p[0]}
+function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2600)}
+function go(v){view=v;if(v==='form'){step=1;f={jk:'Perempuan',poli:'Umum',bayar:'Umum',tgl:today()}}render();scrollTo(0,0);if(API&&v!=='form')sync()}
+function collect(){document.querySelectorAll('[data-k]').forEach(function(e){f[e.dataset.k]=e.value.trim()})}
+function fld(k,label,type,ph,extra){return '<label for="'+k+'">'+label+'</label><input id="'+k+'" data-k="'+k+'" type="'+(type||'text')+'" placeholder="'+(ph||'')+'" value="'+esc(f[k])+'" '+(extra||'')+'><div class="err" id="e_'+k+'"></div>'}
+function sel(k,label,opts,onch){return '<label for="'+k+'">'+label+'</label><select id="'+k+'" data-k="'+k+'" '+(onch?'onchange="'+onch+'"':'')+'>'+opts.map(function(o){return '<option'+(o===f[k]?' selected':'')+'>'+esc(o)+'</option>'}).join('')+'</select>'}
+function bar(){return '<div class="steps">'+[1,2,3].map(function(i){return '<i class="'+(i<=step?'on':'')+'"></i>'}).join('')+'</div>'}
+function setErr(k,m){var e=document.getElementById('e_'+k);if(e)e.textContent=m}
+function valid(){
+  var ok=true;collect();
+  document.querySelectorAll('.err').forEach(function(e){e.textContent=''});
+  function bad(k,m){setErr(k,m);ok=false}
+  if(step===1){
+    if(!f.nama||f.nama.length<3)bad('nama','Isi nama lengkap minimal 3 huruf.');
+    if(!/^\d{16}$/.test(f.nik||''))bad('nik','NIK harus 16 digit angka.');
+    if(!f.lahir)bad('lahir','Pilih tanggal lahir.');else if(f.lahir>today())bad('lahir','Tanggal lahir tidak boleh di masa depan.');
+    if(!/^(08|\+?628)\d{8,11}$/.test((f.hp||'').replace(/[\s-]/g,'')))bad('hp','Gunakan nomor HP Indonesia, contoh 081234567890.');
+  }
+  if(step===2){
+    if(!f.tgl||f.tgl<today())bad('tgl','Pilih tanggal hari ini atau setelahnya.');
+    if(!f.keluhan||f.keluhan.length<3)bad('keluhan','Tuliskan keluhan singkat.');
+  }
+  return ok;
+}
+function next(){if(!valid()){toast('Periksa kembali isian yang bertanda merah');return}step++;render();scrollTo(0,0)}
+function back(){collect();if(step===1){go('home');return}step--;render();scrollTo(0,0)}
+function poliChange(){collect();f.dokter=POLI[f.poli].d[0];render()}
+function antrian(poli,tg){var n=db.filter(function(p){return p.poli===poli&&p.tgl===tg}).length+1;return POLI[poli].k+'-'+String(n).padStart(3,'0')}
+function submit(){
+  var p={id:Date.now(),nama:f.nama,nik:f.nik,lahir:f.lahir,jk:f.jk,hp:f.hp,poli:f.poli,dokter:f.dokter||POLI[f.poli].d[0],tgl:f.tgl,bayar:f.bayar,keluhan:f.keluhan,dibuat:new Date().toISOString()};
+  if(!API){
+    if(db.some(function(x){return x.nik===p.nik&&x.tgl===p.tgl&&x.poli===p.poli})){toast('Pasien ini sudah terdaftar di poli yang sama pada tanggal tersebut');return}
+    p.no=antrian(p.poli,p.tgl);db.unshift(p);save();cur=p;view='ticket';render();scrollTo(0,0);toast('Pendaftaran berhasil disimpan');return;
+  }
+  var b=document.querySelector('.btns .btn:last-child');b.disabled=true;b.textContent='Mengirim…';
+  function reset(){b.disabled=false;b.textContent='Kirim pendaftaran'}
+  fetch(API,{method:'POST',body:JSON.stringify(p)}).then(function(r){return r.json()}).then(function(d){
+    if(!d.ok){toast(d.error==='dup'?'Pasien ini sudah terdaftar di poli yang sama pada tanggal tersebut':'Gagal menyimpan. Coba lagi.');reset();return}
+    p.no=d.no;cur=p;view='ticket';render();scrollTo(0,0);toast('Pendaftaran berhasil dikirim');sync();
+  }).catch(function(){toast('Tidak ada koneksi. Periksa internet lalu coba lagi.');reset()});
+}
+function del(id){if(!confirm('Hapus data pasien ini?'))return;db=db.filter(function(p){return p.id!==id});save();go('list');toast('Data dihapus')}
+function open_(id){cur=db.filter(function(p){return p.id===id})[0];view='ticket';render();scrollTo(0,0)}
+function vHome(){
+  var t=today(),h=db.filter(function(p){return p.tgl===t}).length;
+  var h1=new Date().getHours(),s=h1<11?'Selamat pagi':h1<15?'Selamat siang':h1<18?'Selamat sore':'Selamat malam';
+  var recent=db.slice(0,3).map(function(p){return '<div class="card item" onclick="open_('+p.id+')"><div class="ic">'+ICON[p.poli]+'</div><div class="grow"><h3>'+esc(p.nama)+'</h3><div class="mute">Poli '+p.poli+' · '+tgl(p.tgl)+'</div></div><span class="badge">'+p.no+'</span></div>'}).join('');
+  return '<div class="hero"><h1>'+s+'!</h1><p>Daftar berobat tanpa antre panjang. Isi data, dapatkan nomor antrean, datang sesuai jadwal.</p><button class="big" onclick="go(\'form\')">Daftar pasien baru</button></div>'+
+  '<div class="stats"><div class="card"><div class="num">'+h+'</div><div class="mute">Pendaftar hari ini</div></div><div class="card"><div class="num">'+db.length+'</div><div class="mute">Total terdaftar</div></div></div>'+
+  '<div class="sec"><h2>Pendaftaran terbaru</h2></div>'+(recent||'<div class="empty"><span>📋</span>Belum ada pendaftaran. Mulai dengan menekan tombol daftar di atas.</div>')+
+  '<p class="mute" style="margin-top:22px">Versi uji coba: data tersimpan di perangkat ini saja. Gunakan data contoh, bukan data medis asli.</p>';
+}
+function vForm(){
+  var h='<h2>Registrasi pasien</h2><div class="mute">Langkah '+step+' dari 3</div>'+bar()+'<div class="card">';
+  if(step===1){h+=fld('nama','Nama lengkap','text','Sesuai KTP','autocomplete="name"')+fld('nik','NIK (16 digit)','text','3201xxxxxxxxxxxx','inputmode="numeric" maxlength="16"')+fld('lahir','Tanggal lahir','date','','max="'+today()+'"')+sel('jk','Jenis kelamin',['Perempuan','Laki-laki'])+fld('hp','Nomor HP','tel','081234567890','inputmode="tel"')}
+  if(step===2){
+    if(!f.dokter||POLI[f.poli].d.indexOf(f.dokter)<0)f.dokter=POLI[f.poli].d[0];
+    h+=sel('poli','Poli tujuan',Object.keys(POLI),'poliChange()')+sel('dokter','Dokter',POLI[f.poli].d)+fld('tgl','Tanggal kunjungan','date','','min="'+today()+'"')+sel('bayar','Cara pembayaran',['Umum','BPJS Kesehatan','Asuransi swasta'])+'<label for="keluhan">Keluhan utama</label><textarea id="keluhan" data-k="keluhan" placeholder="Contoh: demam tiga hari, batuk">'+esc(f.keluhan)+'</textarea><div class="err" id="e_keluhan"></div>';
+  }
+  if(step===3){
+    var r=[['Nama',f.nama],['NIK',f.nik],['Tanggal lahir',tgl(f.lahir)],['Jenis kelamin',f.jk],['Nomor HP',f.hp],['Poli',f.poli],['Dokter',f.dokter],['Tanggal kunjungan',tgl(f.tgl)],['Pembayaran',f.bayar],['Keluhan',f.keluhan]];
+    h+='<h3 style="margin-bottom:6px">Periksa data sebelum dikirim</h3><div class="sum">'+r.map(function(x){return '<div><span class="mute">'+x[0]+'</span><b>'+esc(x[1])+'</b></div>'}).join('')+'</div>';
+  }
+  h+='</div><div class="btns"><button class="btn sec2" onclick="back()">'+(step===1?'Batal':'Kembali')+'</button><button class="btn" onclick="'+(step===3?'submit()':'next()')+'">'+(step===3?'Kirim pendaftaran':'Lanjut')+'</button></div>';
+  return h;
+}
+function vTicket(){
+  var p=cur;if(!p)return vHome();
+  var r=[['Nama',p.nama],['Poli',p.poli],['Dokter',p.dokter],['Tanggal',tgl(p.tgl)],['Pembayaran',p.bayar]].filter(function(x){return x[1]});
+  return '<div class="ticket"><div class="top"><div>Nomor antrean Anda</div><div class="q">'+p.no+'</div><div>Poli '+p.poli+'</div></div><div class="cut"></div><div class="body sum">'+r.map(function(x){return '<div><span class="mute">'+x[0]+'</span><b>'+esc(x[1])+'</b></div>'}).join('')+'</div></div>'+
+  '<p class="mute" style="margin-top:14px;text-align:center">Tunjukkan nomor ini di loket pendaftaran. Datang 30 menit sebelum jadwal.</p>'+
+  '<div class="btns">'+(API?'':'<button class="btn del" onclick="del('+p.id+')">Hapus</button>')+'<button class="btn" onclick="go(\'list\')">Lihat daftar</button></div>';
+}
+function filt(){return db.filter(function(p){var n=(p.nama||'').toLowerCase();return(!q||n.indexOf(q.toLowerCase())>=0||String(p.no).toLowerCase()===q.toLowerCase())&&(!fp||p.poli===fp)})}
+function vList(){
+  var opts='<option value="">Semua poli</option>'+Object.keys(POLI).map(function(k){return '<option'+(k===fp?' selected':'')+'>'+k+'</option>'}).join('');
+  var bar=API?'<div class="row" style="justify-content:space-between;margin-top:10px"><span class="mute" id="upd">'+(updated?'Diperbarui '+updated:'Memuat…')+'</span><span><button class="theme" onclick="sync(1)" aria-label="Segarkan">🔄</button> <button class="theme" id="adm" onclick="petugas()">'+(ADMIN?'Keluar petugas':'Mode petugas')+'</button></span></div>':'';
+  return '<h2>Daftar pasien</h2>'+bar+'<div class="filters"><input id="q" placeholder="Cari nama atau no. antrean" value="'+esc(q)+'" oninput="q=this.value;lst()"><select onchange="fp=this.value;lst()">'+opts+'</select></div><div id="lst">'+rows(filt())+'</div>';
+}
+function rows(l){return l.length?l.map(function(p){return '<div class="card item" onclick="open_('+p.id+')"><div class="ic">'+(ICON[p.poli]||'🩺')+'</div><div class="grow"><h3>'+esc(p.nama)+'</h3><div class="mute">'+esc(p.poli)+' · '+tgl(p.tgl)+(p.bayar?' · '+esc(p.bayar):'')+'</div></div><span class="badge">'+esc(p.no)+'</span></div>'}).join(''):'<div class="empty"><span>🔎</span>Tidak ada data yang cocok.</div>'}
+function lst(){document.getElementById('lst').innerHTML=rows(filt());var u=document.getElementById('upd');if(u&&updated)u.textContent='Diperbarui '+updated;var a=document.getElementById('adm');if(a)a.textContent=ADMIN?'Keluar petugas':'Mode petugas'}
+function petugas(){if(ADMIN||PIN){PIN='';ADMIN=false;sync(1);return}var x=prompt('Masukkan PIN petugas');if(x){PIN=x.trim();sync(1)}}
+function sync(manual){
+  if(!API)return;
+  fetch(API+'?pin='+encodeURIComponent(PIN)).then(function(r){return r.json()}).then(function(d){
+    ADMIN=!!d.admin;if(PIN&&!ADMIN){PIN='';toast('PIN salah')}
+    db=(d.rows||[]).sort(function(a,b){return String(b.dibuat).localeCompare(String(a.dibuat))});
+    var n=new Date();updated=[n.getHours(),n.getMinutes(),n.getSeconds()].map(function(x){return String(x).padStart(2,'0')}).join(':');
+    if(view==='list')lst();else if(view==='home')render();
+    if(manual===1)toast('Data diperbarui');
+  }).catch(function(){if(manual===1)toast('Gagal memuat. Periksa koneksi internet.')});
+}
+setInterval(function(){if(!document.hidden)sync()},15000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)sync()});
+function render(){
+  var a=document.getElementById('app');
+  a.innerHTML={home:vHome,form:vForm,ticket:vTicket,list:vList}[view]();
+  a.classList.remove('view');void a.offsetWidth;a.classList.add('view');
+  document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('on',b.dataset.v===view||(view==='ticket'&&b.dataset.v==='list'))});
+}
+document.querySelectorAll('#nav button').forEach(function(b){b.onclick=function(){go(b.dataset.v)}});
+document.getElementById('th').onclick=function(){var r=document.documentElement,d=window.matchMedia('(prefers-color-scheme:dark)').matches;var c=r.dataset.theme||(d?'dark':'light');r.dataset.theme=c==='dark'?'light':'dark'};
+render();sync();
+</script>
+</body>
+</html>
